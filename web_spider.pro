@@ -12,3 +12,6 @@ SOURCES += main.cpp
 HEADERS += \
     constant.h
 
+DISTFILES += \
+    UC.txt
+

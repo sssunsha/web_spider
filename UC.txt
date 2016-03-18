@@ -1,0 +1,10 @@
+User Case:
+1. can fetch all the resouce of the target website
+2. save the fetch information report in local
+3. can download the need resource from the report
+4. can download all the resource with different "keyword"
+5. can update the information report
+6. can easy read the resource information report
+7. try to use some no-sql database
+
+
