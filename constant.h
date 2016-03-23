@@ -1,6 +1,9 @@
 #ifndef CONSTANT_H
 #define CONSTANT_H
 
+#include <QUrl>
+#include <QString>
+#include <QDebug>
 
 // working type:
 // 1. track: just to check the resouce information, and collect them
@@ -24,6 +27,10 @@ enum RESOURCE_STATE {
     E_DOWNLOADING,
     E_DOWNLOADED
 };
+
+
+const QUrl webUrl = QUrl("http://linux.linuxidc.com/");
+
 
 #endif // CONSTANT_H
 
