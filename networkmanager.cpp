@@ -4,7 +4,7 @@
 
 NetworkManager::NetworkManager(QObject *parent) : QObject(parent)
 {
-
+    this->m_pm = new ParseManager(this);
 }
 
 void NetworkManager::init()

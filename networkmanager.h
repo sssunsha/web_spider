@@ -6,6 +6,8 @@
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
+#include "parsemanager.h"
+
 
 class NetworkManager : public QObject
 {
@@ -29,6 +31,7 @@ public slots:
 
 private:
      QNetworkAccessManager* m_net_access_manager;
+     ParseManager* m_pm;
 };
 
 #endif // NETWORKMANAGER_H
