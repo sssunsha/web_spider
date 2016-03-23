@@ -30,6 +30,8 @@ enum RESOURCE_STATE {
 
 
 const QUrl webUrl = QUrl("http://linux.linuxidc.com/");
+const QString webUrl_user = QString("www.linuxidc.com");
+const QString webUrl_password = QString("www.linuxidc.com");
 
 
 #endif // CONSTANT_H

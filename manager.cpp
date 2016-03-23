@@ -12,3 +12,13 @@ void Manager::init()
     this->m_nm->init();
 }
 
+NetworkManager *Manager::getNetworkManager()
+{
+    return this->m_nm;
+}
+
+LocalManager *Manager::getLocalManager()
+{
+    return this->m_lm;
+}
+

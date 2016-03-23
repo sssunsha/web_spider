@@ -12,6 +12,8 @@ class Manager : public QObject
 public:
     explicit Manager(QObject *parent = 0);
     void init();
+    NetworkManager *getNetworkManager();
+    LocalManager* getLocalManager();
 
 signals:
 
