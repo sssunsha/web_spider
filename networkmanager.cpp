@@ -52,6 +52,10 @@ void NetworkManager::handleNetworkReply(QNetworkReply *reply)
     if(statusCodeV == 200)
     {
         qDebug() << "ok ....";
+        QByteArray bytes = reply->readAll();
+        QString data = QString::fromUtf8(bytes);
+        qDebug() << data;
+        this->m_pm->startParsing(data);
     }
     else
     {
