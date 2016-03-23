@@ -13,6 +13,10 @@ public:
 signals:
 
 public slots:
+
+private:
+    void checkLocalFolderExist();
+    void checkLocalFileExist();
 };
 
 #endif // LOCALMANAGER_H
