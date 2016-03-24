@@ -2,7 +2,8 @@
 
 TreeNode::TreeNode(QObject *parent) : QObject(parent)
 {
-
+    // create the child list
+    this->m_childList = new QList<TreeNode*>;
 }
 
 void TreeNode::setName(QString str)
@@ -30,6 +31,11 @@ void TreeNode::setType(QString type)
     this->m_type = type;
 }
 
+void TreeNode::addChild(TreeNode *child)
+{
+
+}
+
 QString TreeNode::getName()
 {
     return this->m_name;
@@ -53,5 +59,10 @@ TreeNode *TreeNode::getParent()
 bool TreeNode::isFolder()
 {
     return this->m_isFolder;
+}
+
+QList<TreeNode *>* TreeNode::getChildList()
+{
+    return this->m_childList;
 }
 

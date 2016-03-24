@@ -20,11 +20,16 @@ public:
     void setIsFolder(bool is_folder);
     void setType(QString type);
 
+    void addChild(TreeNode* child);
+
+
     QString getName();
     QString getUrl();
     QString getType();
     TreeNode* getParent();
     bool isFolder();
+    QList<TreeNode *>* getChildList();
+
 
 signals:
 
@@ -40,7 +45,7 @@ private: // basic
 
 private: // folder
     // for child and father
-    QList<TreeNode*>* m_child;
+    QList<TreeNode*>* m_childList;
 
 private: // resource
     QString m_type;
