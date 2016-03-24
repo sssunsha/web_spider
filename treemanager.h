@@ -14,6 +14,7 @@ public:
 
     // add the new found node from parsing
     void addTreeNode(QString parentUrl, QString name, QString url);
+    void addTreeNode(TreeNode* node, QString parentUrl, QString name, QString url);
 
 signals:
 

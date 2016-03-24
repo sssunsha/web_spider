@@ -12,6 +12,7 @@ void TreeNode::init()
     this->m_parent=NULL;
     this->m_type.clear();
     this->m_url.clear();
+    this->m_chidTrackIndex = 0;
 }
 
 void TreeNode::setName(QString str)
@@ -37,6 +38,11 @@ void TreeNode::setIsFolder(bool is_folder)
 void TreeNode::setType(QString type)
 {
     this->m_type = type;
+}
+
+void TreeNode::setChildTrackIndex(int index)
+{
+    this->m_chidTrackIndex = index;
 }
 
 void TreeNode::addChild(TreeNode *child)
@@ -82,6 +88,11 @@ bool TreeNode::isFolder()
 QList<TreeNode *>* TreeNode::getChildList()
 {
     return this->m_childList;
+}
+
+int TreeNode::getChildTrackIndex()
+{
+    return this->m_chidTrackIndex;
 }
 
 

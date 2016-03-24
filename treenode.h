@@ -19,6 +19,7 @@ public:
     void setParent(TreeNode* father);
     void setIsFolder(bool is_folder);
     void setType(QString type);
+    void setChildTrackIndex(int index);
 
     void addChild(TreeNode* child);
     int getChildCount();
@@ -29,6 +30,7 @@ public:
     TreeNode* getParent();
     bool isFolder();
     QList<TreeNode *>* getChildList();
+    int getChildTrackIndex();
 
 
 signals:
@@ -49,7 +51,7 @@ private: // basic
 private: // folder
     // for child and father
     QList<TreeNode*>* m_childList;
-
+    int m_chidTrackIndex;
 private: // resource
     QString m_type;
 
