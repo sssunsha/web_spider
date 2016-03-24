@@ -11,14 +11,16 @@ SOURCES += main.cpp \
     networkmanager.cpp \
     manager.cpp \
     localmanager.cpp \
-    parsemanager.cpp
+    parsemanager.cpp \
+    treenode.cpp
 
 HEADERS += \
     constant.h \
     networkmanager.h \
     manager.h \
     localmanager.h \
-    parsemanager.h
+    parsemanager.h \
+    treenode.h
 
 DISTFILES += \
     UC.txt
