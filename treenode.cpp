@@ -33,7 +33,7 @@ void TreeNode::setType(QString type)
 
 void TreeNode::addChild(TreeNode *child)
 {
-
+    this->m_childList->append(child);
 }
 
 QString TreeNode::getName()

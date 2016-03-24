@@ -12,7 +12,8 @@ SOURCES += main.cpp \
     manager.cpp \
     localmanager.cpp \
     parsemanager.cpp \
-    treenode.cpp
+    treenode.cpp \
+    treemanager.cpp
 
 HEADERS += \
     constant.h \
@@ -20,7 +21,8 @@ HEADERS += \
     manager.h \
     localmanager.h \
     parsemanager.h \
-    treenode.h
+    treenode.h \
+    treemanager.h
 
 DISTFILES += \
     UC.txt

@@ -3,7 +3,7 @@
 
 ParseManager::ParseManager(QObject *parent) : QObject(parent)
 {
-
+    this->m_tm = new TreeManager(this);
 }
 
 void ParseManager::startParsing(QString str, QUrl baseUrl)

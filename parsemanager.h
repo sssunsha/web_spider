@@ -1,6 +1,7 @@
 #ifndef PARSEMANAGER_H
 #define PARSEMANAGER_H
 #include "constant.h"
+#include "treemanager.h"
 #include <QObject>
 #include <QXmlStreamReader>
 
@@ -16,6 +17,9 @@ public slots:
 
 private:
     void parsingHrefElement(QXmlStreamReader& reader, QString baseUrlStr);
+
+
+    TreeManager* m_tm;
 };
 
 #endif // PARSEMANAGER_H
