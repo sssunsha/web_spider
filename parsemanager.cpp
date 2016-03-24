@@ -6,7 +6,7 @@ ParseManager::ParseManager(QObject *parent) : QObject(parent)
 
 }
 
-void ParseManager::startParsing(QString str)
+void ParseManager::startParsing(QString str, QUrl baseUrl)
 {
     QXmlStreamReader reader(str);
     while (!reader.atEnd()) {
@@ -16,7 +16,7 @@ void ParseManager::startParsing(QString str)
         {
             //                 qDebug() << reader.name().toString() << ","
             //                      << reader.text().toString();
-            parsingHrefElement(reader);
+            parsingHrefElement(reader, baseUrl.toString());
 
         }
         else if (reader.hasError())
@@ -31,7 +31,7 @@ void ParseManager::startParsing(QString str)
 
 }
 
-void ParseManager::parsingHrefElement(QXmlStreamReader &reader)
+void ParseManager::parsingHrefElement(QXmlStreamReader &reader, QString baseUrlStr)
 {
     if(reader.name().toString() == "A" || reader.name().toString() == "a")
     {
@@ -41,9 +41,14 @@ void ParseManager::parsingHrefElement(QXmlStreamReader &reader)
         {
             if( att.at(i).name().toString() == "HREF" || att.at(i).name().toString() == "href")
             {
-                qDebug() <<  reader.readElementText() << " = " << att.at(i).value();
+                QString linkStr;
+                linkStr.append(baseUrlStr);
+                linkStr.append(att.at(i).value());
+
+                qDebug() <<  reader.readElementText() << " = " << linkStr;
             }
         }
     }
 }
+
 

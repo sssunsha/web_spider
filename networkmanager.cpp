@@ -2,6 +2,7 @@
 #include <QLoggingCategory>
 #include <QAuthenticator>
 
+
 NetworkManager::NetworkManager(QObject *parent) : QObject(parent)
 {
     this->m_pm = new ParseManager(this);
@@ -49,13 +50,14 @@ void NetworkManager::start2Fetch()
 void NetworkManager::handleNetworkReply(QNetworkReply *reply)
 {
     QVariant statusCodeV =  reply->attribute(QNetworkRequest::HttpStatusCodeAttribute);
+
     if(statusCodeV == 200)
     {
         qDebug() << "ok ....";
         QByteArray bytes = reply->readAll();
         QString data = QString::fromUtf8(bytes);
 //        qDebug() << data;
-        this->m_pm->startParsing(data);
+        this->m_pm->startParsing(data, reply->request().url());
     }
     else
     {
