@@ -2,6 +2,7 @@
 #define PARSEMANAGER_H
 #include "constant.h"
 #include <QObject>
+#include <QXmlStreamReader>
 
 class ParseManager : public QObject
 {
@@ -14,7 +15,7 @@ signals:
 public slots:
 
 private:
-//    void parsingElement();
+    void parsingHrefElement(QXmlStreamReader& reader);
 };
 
 #endif // PARSEMANAGER_H
