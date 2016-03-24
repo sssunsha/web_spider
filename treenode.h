@@ -21,7 +21,7 @@ public:
     void setType(QString type);
 
     void addChild(TreeNode* child);
-
+    int getChildCount();
 
     QString getName();
     QString getUrl();
@@ -34,6 +34,9 @@ public:
 signals:
 
 public slots:
+
+private:
+    void init();
 
 private: // basic
     // true: folder means has children

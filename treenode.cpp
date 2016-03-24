@@ -6,6 +6,14 @@ TreeNode::TreeNode(QObject *parent) : QObject(parent)
     this->m_childList = new QList<TreeNode*>;
 }
 
+void TreeNode::init()
+{
+    this->m_name.clear();
+    this->m_parent=NULL;
+    this->m_type.clear();
+    this->m_url.clear();
+}
+
 void TreeNode::setName(QString str)
 {
     this->m_name = str;
@@ -34,6 +42,16 @@ void TreeNode::setType(QString type)
 void TreeNode::addChild(TreeNode *child)
 {
     this->m_childList->append(child);
+}
+
+int TreeNode::getChildCount()
+{
+    if(this->m_childList)
+    {
+        return this->m_childList->length();
+    }
+
+    return 0;
 }
 
 QString TreeNode::getName()
@@ -65,4 +83,6 @@ QList<TreeNode *>* TreeNode::getChildList()
 {
     return this->m_childList;
 }
+
+
 

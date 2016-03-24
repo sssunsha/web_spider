@@ -12,9 +12,18 @@ class TreeManager : public QObject
 public:
     explicit TreeManager(QObject *parent = 0);
 
+    // add the new found node from parsing
+    void addTreeNode(QString parentUrl, QString name, QString url);
+
 signals:
 
 public slots:
+
+private:
+    void init();
+
+private:
+    TreeNode* m_tree;
 };
 
 #endif // TREEMANAGER_H

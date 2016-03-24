@@ -46,6 +46,7 @@ void ParseManager::parsingHrefElement(QXmlStreamReader &reader, QString baseUrlS
                 linkStr.append(att.at(i).value());
 
                 qDebug() <<  reader.readElementText() << " = " << linkStr;
+                this->m_tm->addTreeNode(baseUrlStr, reader.readElementText(), linkStr);
             }
         }
     }
