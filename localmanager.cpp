@@ -22,7 +22,7 @@ void LocalManager::checkLocalFolderExist()
     QDir dir(LOCALFOLDER);
     if(!dir.exists())
     {
-        qDebug() << "create the local folder to store data";
+        qDebug() << "[checkLocalFolderExist] create the local folder to store data";
         dir.mkpath(LOCALFOLDER);
     }
 }
@@ -33,7 +33,7 @@ void LocalManager::checkLocalFileExist()
     QFile report_file(LOCALFile);
     if(!report_file.exists())
     {
-        qDebug() << "create the local recent win ball file";
+        qDebug() << "[checkLocalFileExist] create the local recent win ball file";
         report_file.open(QIODevice::WriteOnly | QIODevice::Text);
     }
 

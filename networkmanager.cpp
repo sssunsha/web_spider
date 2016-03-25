@@ -53,48 +53,48 @@ void NetworkManager::handleNetworkReply(QNetworkReply *reply)
 
     if(statusCodeV == 200)
     {
-        qDebug() << "ok ....";
+        qDebug() << "[handleNetworkReply] ok ....";
         QByteArray bytes = reply->readAll();
         QString data = QString::fromUtf8(bytes);
-//        qDebug() << data;
+
         this->m_pm->startParsing(data, reply->request().url());
     }
     else
     {
-        qDebug() << "failed ..." << statusCodeV;
+        qDebug() << "[handleNetworkReply] failed ..." << statusCodeV;
 
     }
 }
 
 void NetworkManager::hadleAuthenticationRequired(QNetworkReply *reply, QAuthenticator *authenticator)
 {
-    qDebug() << "hadleAuthenticationRequired";
+    qDebug() << "[hadleAuthenticationRequired]";
     authenticator->setUser(webUrl_user);
     authenticator->setPassword(webUrl_password);
 }
 
 void NetworkManager::handleEncrypted(QNetworkReply *reply)
 {
-    qDebug() << "handleEncrypted";
+    qDebug() << "[handleEncrypted]";
 }
 
 void NetworkManager::handleNetworkAccessibleChanged(QNetworkAccessManager::NetworkAccessibility accessible)
 {
-    qDebug() << "handleNetworkAccessibleChanged";
+    qDebug() << "[handleNetworkAccessibleChanged]";
 }
 
 void NetworkManager::handlePreSharedKeyAuthenticationRequired(QNetworkReply *reply, QSslPreSharedKeyAuthenticator *authenticator)
 {
-    qDebug() << "handlePreSharedKeyAuthenticationRequired";
+    qDebug() << "[handlePreSharedKeyAuthenticationRequired]";
 }
 
 void NetworkManager::handleProxyAuthenticationRequired(const QNetworkProxy &proxy, QAuthenticator *authenticator)
 {
-    qDebug() << "handleProxyAuthenticationRequired";
+    qDebug() << "[handleProxyAuthenticationRequired]";
 }
 
 void NetworkManager::handleSSLErrors(QNetworkReply *reply, const QList<QSslError> &errors)
 {
-    qDebug() << "handleSSLErrors";
+    qDebug() << "[handleSSLErrors]";
 }
 

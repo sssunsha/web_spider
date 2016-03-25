@@ -36,7 +36,7 @@ void TreeManager::printTreeMap()
     QMap<QString,TreeNode*>::const_iterator i = m_treeMap.begin();
     while (i != m_treeMap.end())
     {
-        qDebug() << i.key() << " --> " << i.value();
+        qDebug() <<"[printTreeMap] "<< i.key() << " --> " << i.value();
         i++;
     }
 }
