@@ -46,6 +46,8 @@ void NetworkManager::start2Fetch(QString url)
 
 void NetworkManager::start2Fetch()
 {
+    // open the local storage file
+    ((Manager*)this->parent())->getLocalManager()->openFetchRecordFile();
     start2Fetch(webUrl);
 }
 

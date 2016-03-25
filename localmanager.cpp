@@ -3,8 +3,15 @@
 #include <QDir>
 
 const QString TXTLOCALFILE = "/tmp/web_spider/fetch_report.txt";
-const QString HTMLTXTLOCALFILE = "/tmp/web_spider/index.html";
+const QString HTMLLOCALFILE = "/tmp/web_spider/index.html";
 const QString LOCALFOLDER = "/tmp/web_spider/";
+
+
+QString htmlHeardStr = QString("<html><head>"
+                               "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />"
+                               "<title>{title}</title></head><body><H1>{title}</H1><hr>\n");
+QString htmlContentStr = QString("<p><A HREF=\"{url}\">{name}</A>\n");
+QString htmlFooterStr = QString("<hr></body></html>");
 
 LocalManager::LocalManager(QObject *parent) : QObject(parent)
 {
@@ -17,7 +24,6 @@ void LocalManager::init()
     checktxtLocalFileExist();
 
     this->m_file = new QFile(TXTLOCALFILE, this);
-    openFetchRecordFile();
 }
 
 LocalManager::~LocalManager()
@@ -29,13 +35,13 @@ LocalManager::~LocalManager()
 // name-url\n
 void LocalManager::addFetchRecord2File(TreeNode *node)
 {
-        QTextStream out(m_file);
-        QString str;
-        str.append(node->getName().toUtf8());
-        str.append("-----");
-        str.append(node->getUrl());
-        str.append("\n");
-        out<<str;
+    QTextStream out(m_file);
+    QString str;
+    str.append(node->getName().toUtf8());
+    str.append(txtSplitMark);
+    str.append(node->getUrl());
+    str.append("\n");
+    out<<str;
 }
 
 void LocalManager::openFetchRecordFile()
@@ -54,6 +60,54 @@ void LocalManager::closeFetchRecordFile()
 
 void LocalManager::Txt2Html()
 {
+    QFile txtFile(TXTLOCALFILE);
+    QFile htmlFile(HTMLLOCALFILE);
+    if(htmlFile.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        QTextStream htmlOut(&htmlFile);
+
+        // insert the header of the html
+        QString str = htmlHeardStr;
+
+        // replace the {title} with baseurl
+        str.replace("{title}", webUrl);
+
+        // write the replaced header str
+        htmlOut << str;
+
+        if(txtFile.open(QIODevice::ReadOnly | QIODevice::Text))
+        {
+            QTextStream txtIn(&txtFile);
+            while (!txtIn.atEnd()) {
+                QString line = txtIn.readLine();
+                QStringList lineList = line.split(txtSplitMark);
+                QString contentStr(htmlContentStr);
+                str = contentStr.replace("{name}", lineList.at(0));
+                str = contentStr.replace("{url}", lineList.at(1));
+
+               htmlOut << str;
+            }
+
+            txtFile.close();
+        }
+        else
+        {
+            qDebug() << "[Txt2Html]: failed to open the txt file";
+        }
+
+        // insert the footer
+        htmlOut << htmlFooterStr;
+        htmlFile.close();
+
+        qDebug() << "[Txt2Html]: finish transform txt to html";
+    }
+    else
+    {
+        qDebug() << "[Txt2Html]: failed to open the html file";
+    }
+
+
+
 
 }
 
