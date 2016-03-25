@@ -15,13 +15,15 @@ public:
     void addFetchRecord2File(TreeNode* node);
     void openFetchRecordFile();
     void closeFetchRecordFile();
+    // format the txt report to html
+    void Txt2Html();
 signals:
 
 public slots:
 
 private:
     void checkLocalFolderExist();
-    void checkLocalFileExist();
+    void checktxtLocalFileExist();
 
     QFile* m_file;
 };

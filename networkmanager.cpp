@@ -63,6 +63,8 @@ void NetworkManager::startFetchNextGoal()
         // close the file
         ((Manager*)this->parent())->getLocalManager()->closeFetchRecordFile();
 
+        // format the txt repor to html
+        ((Manager*)this->parent())->getLocalManager()->Txt2Html();
         qDebug() <<"";
         qDebug() << "-------------------------------";
         qDebug() << "[all finished ...]";
