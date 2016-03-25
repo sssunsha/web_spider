@@ -20,11 +20,11 @@ void ParseManager::startParsing(QString str, QString baseUrl)
         }
         else if (reader.hasError())
         {
-            qDebug() << "[startParsing] reader error: " << reader.errorString() << endl;
+//            qDebug() << "[startParsing] reader error: " << reader.errorString() << endl;
         }
         else if (reader.atEnd())
         {
-            qDebug() << "[startParsing] Reached end, done" << endl;
+//            qDebug() << "[startParsing] Reached end, done" << endl;
         }
     }
 
@@ -53,7 +53,7 @@ void ParseManager::parsingHrefElement(QXmlStreamReader &reader, QString baseUrlS
                 linkStr.append(url);
                 linkStr.append(att.at(i).value());
 
-                qDebug() <<"[parsingHrefElement] "<<  reader.readElementText() << " = " << linkStr;
+//                qDebug() <<"[parsingHrefElement] "<<  reader.readElementText() << " = " << linkStr;
                 this->m_tm->addTreeNode(baseUrlStr, reader.readElementText(), linkStr);
             }
         }

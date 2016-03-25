@@ -63,7 +63,7 @@ void NetworkManager::startFetchNextGoal()
         qDebug() << "-------------------------------";
         qDebug() << "[all finished ...]";
         qDebug() << "-------------------------------";
-        this->m_pm->getTreeManager()->printTreeMap();
+        this->m_pm->getTreeManager()->printFetchReport();
     }
 }
 
@@ -73,7 +73,7 @@ void NetworkManager::handleNetworkReply(QNetworkReply *reply)
 
     if(statusCodeV == 200)
     {
-        qDebug() << "[handleNetworkReply] ok ....";
+//        qDebug() << "[handleNetworkReply] ok ....";
         QByteArray bytes = reply->readAll();
         QString data = QString::fromUtf8(bytes);
 

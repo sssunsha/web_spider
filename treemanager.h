@@ -16,9 +16,11 @@ public:
     // add the new found node from parsing
     void addTreeNode(QString parentUrl, QString name, QString url);
     void printTreeMap();
+    void saveFetchReport2LocalFile();
     void addTrackGoal(QString str);
     void removeTrackGoal(QString str);
     QString popOneTrackGoal();
+    QString printFetchReport();
 
 signals:
 

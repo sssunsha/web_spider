@@ -41,6 +41,11 @@ void TreeManager::printTreeMap()
     }
 }
 
+void TreeManager::saveFetchReport2LocalFile()
+{
+
+}
+
 void TreeManager::addTrackGoal(QString str)
 {
     // add the new goal url for tracking
@@ -61,6 +66,21 @@ QString TreeManager::popOneTrackGoal()
     else
     {
         return this->m_trackList.takeLast();
+    }
+}
+
+QString TreeManager::printFetchReport()
+{
+    qDebug() << "[printTreeMap] " << "size = " << m_treeMap.count();
+    QMap<QString,TreeNode*>::const_iterator i = m_treeMap.begin();
+    while (i != m_treeMap.end())
+    {
+        qDebug() <<"[printFetchReport] ..............................";
+        if(i.value()->isFolder() == false)
+        {
+            qDebug() << i.value()->getName() << " = " << i.key();
+        }
+        i++;
     }
 }
 
