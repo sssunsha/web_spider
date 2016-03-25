@@ -1,4 +1,5 @@
 #include "treenode.h"
+#include <QStringList>
 
 TreeNode::TreeNode(QObject *parent) : QObject(parent)
 {
@@ -16,6 +17,27 @@ void TreeNode::init()
     this->m_isFolder = true;
 }
 
+void TreeNode::folderChecking(QString urlStr)
+{
+    if(urlStr.at(urlStr.length()-1) == 47) // 47 is the unicode of "/"
+    {
+        this->m_isFolder = true;
+    }
+    else
+    {
+        this->m_isFolder = false;
+        // check the resource type for the url
+        resourceTypeChecking(urlStr);
+    }
+}
+
+void TreeNode::resourceTypeChecking(QString urlStr)
+{
+    QStringList list = urlStr.split(".");
+    int size = list.count();
+    this->m_type = list.at(size-1);
+}
+
 void TreeNode::setName(QString str)
 {
     this->m_name = str;
@@ -24,6 +46,9 @@ void TreeNode::setName(QString str)
 void TreeNode::setUrl(QString url)
 {
     this->m_url = url;
+
+    // check the url is folder or resource
+    folderChecking(url);
 }
 
 void TreeNode::setParent(TreeNode *father)

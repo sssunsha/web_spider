@@ -43,6 +43,9 @@ void TreeManager::printTreeMap()
 
 void TreeManager::addTreeNode(TreeNode *node, QString parentUrl, QString name, QString url)
 {
+    // filter the already conatins url, if exist, no need to add again
+    if(m_treeMap.contains(url)) return;
+
     // create the new treeNode
     TreeNode* newNode = new TreeNode(node);
     newNode->setName(name);

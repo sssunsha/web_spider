@@ -42,6 +42,8 @@ public slots:
 
 private:
     void init();
+    void folderChecking(QString urlStr);
+    void resourceTypeChecking(QString urlStr);
 
 private: // basic
     // true: folder means has children
