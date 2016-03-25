@@ -1,4 +1,5 @@
 #include "networkmanager.h"
+#include "manager.h"
 #include <QLoggingCategory>
 #include <QAuthenticator>
 #include <QUrl>
@@ -59,11 +60,14 @@ void NetworkManager::startFetchNextGoal()
     else
     {
         // finish all the work
+        // close the file
+        ((Manager*)this->parent())->getLocalManager()->closeFetchRecordFile();
+
         qDebug() <<"";
         qDebug() << "-------------------------------";
         qDebug() << "[all finished ...]";
         qDebug() << "-------------------------------";
-        this->m_pm->getTreeManager()->printFetchReport();
+//        this->m_pm->getTreeManager()->printFetchReport();
     }
 }
 

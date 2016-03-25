@@ -22,6 +22,7 @@ public:
     QString popOneTrackGoal();
     QString printFetchReport();
 
+
 signals:
 
 public slots:

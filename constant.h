@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QDebug>
+#include <QObject>
 
 // working type:
 // 1. track: just to check the resouce information, and collect them
@@ -31,7 +32,6 @@ enum RESOURCE_STATE {
 const QString webUrl = QString("http://linux.linuxidc.com/");
 const QString webUrl_user = QString("www.linuxidc.com");
 const QString webUrl_password = QString("www.linuxidc.com");
-
 
 #endif // CONSTANT_H
 

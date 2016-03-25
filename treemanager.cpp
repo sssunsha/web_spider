@@ -1,4 +1,5 @@
 #include "treemanager.h"
+#include "manager.h"
 
 TreeManager::TreeManager(QObject *parent) : QObject(parent)
 {
@@ -105,6 +106,12 @@ void TreeManager::addTreeNode(TreeNode *node, QString parentUrl, QString name, Q
     if(newNode->isFolder())
     {
         addTrackGoal(newNode->getUrl());
+    }
+    else
+    {
+        // if is resource write to local folder
+//        ((Manager*)globalManager)->getLocalManager()->addFetchRecord2File(newNode);
+        ((Manager*)this->parent()->parent()->parent())->getLocalManager()->addFetchRecord2File(newNode);
     }
 
 }
