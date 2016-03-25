@@ -23,6 +23,8 @@ public:
 
     void addChild(TreeNode* child);
     int getChildCount();
+    void setCheckType(enum CHECK_TYPE type);
+
 
     QString getName();
     QString getUrl();
@@ -31,6 +33,7 @@ public:
     bool isFolder();
     QList<TreeNode *>* getChildList();
     int getChildTrackIndex();
+    enum CHECK_TYPE getCheckType();
 
 
 signals:
@@ -47,6 +50,7 @@ private: // basic
     TreeNode* m_parent;
     QString m_url; // self node url
     QString m_name; // description name
+    enum CHECK_TYPE m_check_type;
 
 private: // folder
     // for child and father

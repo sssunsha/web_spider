@@ -2,39 +2,66 @@
 
 TreeManager::TreeManager(QObject *parent) : QObject(parent)
 {
-    this->m_tree = new TreeNode(this);
     init();
 }
 
 void TreeManager::addTreeNode(QString parentUrl, QString name, QString url)
 {
-
-    TreeNode* node = m_tree;
-    if(node->getUrl().isNull())
+    // check the map is empty of not
+    if(m_treeMap.count() > 0)
     {
-        // now the tree is empty
+        if(m_treeMap.contains(parentUrl))
+        {
+            // find the match key
+            addTreeNode(m_treeMap.value(parentUrl), parentUrl, name, url);
+        }
+        else
+        {
+            qDebug() << "[addTreeNode] error. : parentUrl = " << parentUrl << " name = " << name << " url = " << url;
+        }
     }
     else
     {
-       addTreeNode(node, parentUrl, name, url);
+        // the map is empty
+        qDebug() << "[addTreeNode] is empty";
+        addTreeNode(m_tree, parentUrl, name, url);
+    }
+
+}
+
+void TreeManager::printTreeMap()
+{
+    // go to print the tree map for developing
+    qDebug() << "[printTreeMap] " << "size = " << m_treeMap.count();
+    QMap<QString,TreeNode*>::const_iterator i = m_treeMap.begin();
+    while (i != m_treeMap.end())
+    {
+        qDebug() << i.key() << " --> " << i.value();
+        i++;
     }
 }
 
-void TreeManager::addTreeNode(TreeNode* node, QString parentUrl, QString name, QString url)
+void TreeManager::addTreeNode(TreeNode *node, QString parentUrl, QString name, QString url)
 {
-    if(node->getUrl() == parentUrl)
-    {
-        // add the child tree node
-    }
-    else
-    {
+    // create the new treeNode
+    TreeNode* newNode = new TreeNode(node);
+    newNode->setName(name);
+    newNode->setParent(node);
+    newNode->setUrl(url);
 
-    }
+    // set to the parent tree ndoe
+    node->addChild(newNode);
+
+    // insert the new record to the treeMap
+    m_treeMap.insert(url, newNode);
 
 }
 
 void TreeManager::init()
 {
+    this->m_tree = new TreeNode(this);
 
+    // add the first key-value to the tree map
+    this->m_treeMap.insert(webUrl.toString(), m_tree);
 }
 

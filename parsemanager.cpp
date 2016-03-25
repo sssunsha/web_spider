@@ -29,6 +29,8 @@ void ParseManager::startParsing(QString str, QUrl baseUrl)
         }
     }
 
+        // finish the parsing, print the map for check
+    this->m_tm->printTreeMap();
 }
 
 void ParseManager::parsingHrefElement(QXmlStreamReader &reader, QString baseUrlStr)

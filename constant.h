@@ -9,9 +9,9 @@
 // 1. track: just to check the resouce information, and collect them
 // 2. download: download the resource
 
-enum WORKING_TYPE {
-    E_TRACK,
-    E_DOWNLOAD
+enum CHECK_TYPE {
+    E_UNCHECK,
+    E_CHECKED,
 };
 
 // resorce state

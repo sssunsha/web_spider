@@ -13,6 +13,7 @@ void TreeNode::init()
     this->m_type.clear();
     this->m_url.clear();
     this->m_chidTrackIndex = 0;
+    this->m_isFolder = true;
 }
 
 void TreeNode::setName(QString str)
@@ -60,6 +61,11 @@ int TreeNode::getChildCount()
     return 0;
 }
 
+void TreeNode::setCheckType(CHECK_TYPE type)
+{
+    this->m_check_type = type;
+}
+
 QString TreeNode::getName()
 {
     return this->m_name;
@@ -93,6 +99,11 @@ QList<TreeNode *>* TreeNode::getChildList()
 int TreeNode::getChildTrackIndex()
 {
     return this->m_chidTrackIndex;
+}
+
+CHECK_TYPE TreeNode::getCheckType()
+{
+    return this->m_check_type;
 }
 
 
