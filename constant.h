@@ -1,7 +1,6 @@
 #ifndef CONSTANT_H
 #define CONSTANT_H
 
-#include <QUrl>
 #include <QString>
 #include <QDebug>
 
@@ -29,7 +28,7 @@ enum RESOURCE_STATE {
 };
 
 
-const QUrl webUrl = QUrl("http://linux.linuxidc.com/");
+const QString webUrl = QString("http://linux.linuxidc.com/");
 const QString webUrl_user = QString("www.linuxidc.com");
 const QString webUrl_password = QString("www.linuxidc.com");
 

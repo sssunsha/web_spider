@@ -15,8 +15,9 @@ class NetworkManager : public QObject
 public:
     explicit NetworkManager(QObject *parent = 0);
     void init();
-    void start2Fetch(QUrl ul);
+    void start2Fetch(QString ul);
     void start2Fetch();
+    void startFetchNextGoal();
 
 signals:
 

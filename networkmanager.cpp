@@ -1,7 +1,7 @@
 #include "networkmanager.h"
 #include <QLoggingCategory>
 #include <QAuthenticator>
-
+#include <QUrl>
 
 NetworkManager::NetworkManager(QObject *parent) : QObject(parent)
 {
@@ -36,15 +36,35 @@ void NetworkManager::init()
 
 }
 
-void NetworkManager::start2Fetch(QUrl url)
+void NetworkManager::start2Fetch(QString url)
 {
-    m_net_access_manager->get(QNetworkRequest(url));
+    qDebug() << "[start2Fetch] -->" << url;
+    m_net_access_manager->get(QNetworkRequest(QUrl(url)));
 
 }
 
 void NetworkManager::start2Fetch()
 {
     start2Fetch(webUrl);
+}
+
+void NetworkManager::startFetchNextGoal()
+{
+    // go on to fetch for the next goal
+    QString goalStr = this->m_pm->getTreeManager()->popOneTrackGoal();
+    if(!goalStr.isEmpty())
+    {
+        start2Fetch(goalStr);
+    }
+    else
+    {
+        // finish all the work
+        qDebug() <<"";
+        qDebug() << "-------------------------------";
+        qDebug() << "[all finished ...]";
+        qDebug() << "-------------------------------";
+        this->m_pm->getTreeManager()->printTreeMap();
+    }
 }
 
 void NetworkManager::handleNetworkReply(QNetworkReply *reply)
@@ -57,12 +77,14 @@ void NetworkManager::handleNetworkReply(QNetworkReply *reply)
         QByteArray bytes = reply->readAll();
         QString data = QString::fromUtf8(bytes);
 
-        this->m_pm->startParsing(data, reply->request().url());
+        this->m_pm->startParsing(data, reply->request().url().toString());
+        startFetchNextGoal();
     }
     else
     {
         qDebug() << "[handleNetworkReply] failed ..." << statusCodeV;
-
+        // failed so go on to fetch the next goal
+        startFetchNextGoal();
     }
 }
 

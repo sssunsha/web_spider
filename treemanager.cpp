@@ -41,6 +41,29 @@ void TreeManager::printTreeMap()
     }
 }
 
+void TreeManager::addTrackGoal(QString str)
+{
+    // add the new goal url for tracking
+    this->m_trackList.prepend(str);
+}
+
+void TreeManager::removeTrackGoal(QString str)
+{
+    this->m_trackList.removeOne(str);
+}
+
+QString TreeManager::popOneTrackGoal()
+{
+    if(this->m_trackList.isEmpty())
+    {
+        return "";
+    }
+    else
+    {
+        return this->m_trackList.takeLast();
+    }
+}
+
 void TreeManager::addTreeNode(TreeNode *node, QString parentUrl, QString name, QString url)
 {
     // filter the already conatins url, if exist, no need to add again
@@ -58,6 +81,12 @@ void TreeManager::addTreeNode(TreeNode *node, QString parentUrl, QString name, Q
     // insert the new record to the treeMap
     m_treeMap.insert(url, newNode);
 
+    // check if the new node is folder, if yes, add to the goal list
+    if(newNode->isFolder())
+    {
+        addTrackGoal(newNode->getUrl());
+    }
+
 }
 
 void TreeManager::init()
@@ -65,6 +94,6 @@ void TreeManager::init()
     this->m_tree = new TreeNode(this);
 
     // add the first key-value to the tree map
-    this->m_treeMap.insert(webUrl.toString(), m_tree);
+    this->m_treeMap.insert(webUrl, m_tree);
 }
 

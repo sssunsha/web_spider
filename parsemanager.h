@@ -10,7 +10,8 @@ class ParseManager : public QObject
     Q_OBJECT
 public:
     explicit ParseManager(QObject *parent = 0);
-    void startParsing(QString str, QUrl baseUrl);
+    void startParsing(QString str, QString baseUrl);
+    TreeManager* getTreeManager();
 signals:
 
 public slots:

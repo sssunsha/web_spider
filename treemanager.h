@@ -16,6 +16,9 @@ public:
     // add the new found node from parsing
     void addTreeNode(QString parentUrl, QString name, QString url);
     void printTreeMap();
+    void addTrackGoal(QString str);
+    void removeTrackGoal(QString str);
+    QString popOneTrackGoal();
 
 signals:
 
@@ -28,6 +31,7 @@ private:
 private:
     TreeNode* m_tree;
     QMap<QString,TreeNode*> m_treeMap;  // the url and TreeNode key-value map
+    QList<QString> m_trackList; // the track list for Network download and tracking
 };
 
 #endif // TREEMANAGER_H

@@ -15,6 +15,7 @@ void TreeNode::init()
     this->m_url.clear();
     this->m_chidTrackIndex = 0;
     this->m_isFolder = true;
+    this->m_check_type = E_UNCHECK;
 }
 
 void TreeNode::folderChecking(QString urlStr)
