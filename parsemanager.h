@@ -11,6 +11,7 @@ class ParseManager : public QObject
 public:
     explicit ParseManager(QObject *parent = 0);
     void startParsing(QString str, QString baseUrl);
+    void startRegexParsing(QString str, QString baseUrl);
     TreeManager* getTreeManager();
 signals:
 

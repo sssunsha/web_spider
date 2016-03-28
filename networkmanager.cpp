@@ -85,7 +85,8 @@ void NetworkManager::handleNetworkReply(QNetworkReply *reply)
         QByteArray bytes = reply->readAll();
         QString data = QString::fromUtf8(bytes);
 
-        this->m_pm->startParsing(data, reply->request().url().toString());
+//        this->m_pm->startParsing(data, reply->request().url().toString());
+        this->m_pm->startRegexParsing(data, reply->request().url().toString());
         startFetchNextGoal();
     }
     else

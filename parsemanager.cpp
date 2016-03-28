@@ -1,5 +1,6 @@
 #include "parsemanager.h"
 #include <QXmlStreamAttributes>
+#include <QRegExp>
 
 ParseManager::ParseManager(QObject *parent) : QObject(parent)
 {
@@ -29,7 +30,25 @@ void ParseManager::startParsing(QString str, QString baseUrl)
     }
 
         // finish the parsing, print the map for check
-//    this->m_tm->printTreeMap();
+    //    this->m_tm->printTreeMap();
+}
+
+
+//TODO: not finished
+// do the parsing with regex
+void ParseManager::startRegexParsing(QString str, QString baseUrl)
+{
+        // look for the <a>...</a>, and get the infromation
+
+    QRegExp rx("(<a href=[\\S]+</a>)",  Qt::CaseInsensitive);
+    QStringList list;
+    int pos = 0;
+
+    while ((pos = rx.indexIn(str, pos)) != -1) {
+        list << rx.cap(1);
+        pos += rx.matchedLength();
+    }
+    qDebug() << list;
 }
 
 TreeManager *ParseManager::getTreeManager()

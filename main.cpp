@@ -8,13 +8,7 @@ int main(int argc, char *argv[])
     qDebug() << "==================== welcome to web spider =================";
     Manager* m = new Manager(&a);
     m->init();
-
-
-    m->getLocalManager()->Txt2Html();
-//    m->getNetworkManager()->start2Fetch();
-
-
-
+    m->getNetworkManager()->start2Fetch();
     return a.exec();
 }
 
