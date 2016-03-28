@@ -51,6 +51,63 @@ void ParseManager::startRegexParsing(QString str, QString baseUrl)
     qDebug() << list;
 }
 
+
+// do the String parsing
+void ParseManager::startStringParsing(QString str, QString baseUrl)
+{
+    // look for <a......</a>
+    int posBegin = 0;
+    int posEnd = 0;
+    QString beginStr = "<a";
+    QString endStr = "</a>";
+
+    QString hrefBeginStr = "href=\"";
+    QString hrefEndStr = "\"";
+    QString nameBeginStr = ">";
+    QString nameEndStr = "<";
+
+    int hrefBeingPos = 0;
+    int hrefEndPos = 0;
+    int nameBeginPos = 0;
+    int nameEndPos = 0;
+
+    do {
+        posBegin = str.indexOf(beginStr, posEnd, Qt::CaseInsensitive);
+        if(posBegin >= 0)
+        {
+            posEnd = str.indexOf(endStr, posBegin, Qt::CaseInsensitive);
+            if(posEnd >=0)
+            {
+                // get the <a>...</a> sentence
+                QString aStr = str.mid(posBegin, posEnd-posBegin+4);
+//                qDebug() << aStr;
+                // parsing for the url and name
+                hrefBeingPos = aStr.indexOf(hrefBeginStr, 0, Qt::CaseInsensitive);
+                hrefEndPos = aStr.indexOf(hrefEndStr, hrefBeingPos+ 7, Qt::CaseInsensitive);
+                nameBeginPos = aStr.indexOf(nameBeginStr, 0, Qt::CaseInsensitive);
+                nameEndPos = aStr.indexOf(nameEndStr, nameBeginPos, Qt::CaseInsensitive);
+
+
+                QString linkStr;
+                QString url = webUrl;
+                url.remove(url.length()-1, 1);
+                linkStr.append(url);
+                linkStr.append(aStr.mid(hrefBeingPos+6, hrefEndPos-hrefBeingPos-6));
+//                qDebug() << linkStr;
+                QString nameStr = aStr.mid(nameBeginPos+1, nameEndPos-nameBeginPos-1);
+//                qDebug() << nameStr;
+                this->m_tm->addTreeNode(webUrl, nameStr, linkStr);
+            }
+        }
+        else
+        {
+            break;
+        }
+
+    }while(posEnd >= 0);
+
+}
+
 TreeManager *ParseManager::getTreeManager()
 {
     return this->m_tm;
