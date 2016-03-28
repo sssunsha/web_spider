@@ -70,7 +70,7 @@ void LocalManager::Txt2Html()
         QString str = htmlHeardStr;
 
         // replace the {title} with baseurl
-        str.replace("{title}", webUrl);
+        str.replace("{title}", Constant::web_url);
 
         // write the replaced header str
         htmlOut << str;

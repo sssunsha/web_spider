@@ -48,7 +48,7 @@ void NetworkManager::start2Fetch()
 {
     // open the local storage file
     ((Manager*)this->parent())->getLocalManager()->openFetchRecordFile();
-    start2Fetch(webUrl);
+    start2Fetch(Constant::web_url);
 }
 
 void NetworkManager::startFetchNextGoal()

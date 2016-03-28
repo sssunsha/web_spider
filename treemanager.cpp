@@ -121,6 +121,6 @@ void TreeManager::init()
     this->m_tree = new TreeNode(this);
 
     // add the first key-value to the tree map
-    this->m_treeMap.insert(webUrl, m_tree);
+    this->m_treeMap.insert(Constant::web_url, m_tree);
 }
 

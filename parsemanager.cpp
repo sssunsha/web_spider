@@ -16,7 +16,7 @@ void ParseManager::startParsing(QString str, QString baseUrl)
         if (reader.isStartElement())
         {
 //            parsingHrefElement(reader, baseUrl);
-            parsingHrefElement(reader, webUrl);
+            parsingHrefElement(reader, Constant::web_url);
 
         }
         else if (reader.hasError())
@@ -95,7 +95,7 @@ void ParseManager::startStringParsing(QString str, QString baseUrl)
                 }
                 else
                 {
-                    QString url = webUrl;
+                    QString url = Constant::web_url;
                     url.remove(url.length()-1, 1);
                     linkStr.append(url);
                     linkStr.append(selfUrl);
@@ -104,7 +104,7 @@ void ParseManager::startStringParsing(QString str, QString baseUrl)
 //                qDebug() << linkStr;
                 QString nameStr = aStr.mid(nameBeginPos+1, nameEndPos-nameBeginPos-1);
 //                qDebug() << nameStr;
-                this->m_tm->addTreeNode(webUrl, nameStr, linkStr);
+                this->m_tm->addTreeNode(Constant::web_url, nameStr, linkStr);
             }
         }
         else

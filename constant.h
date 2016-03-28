@@ -29,11 +29,14 @@ enum RESOURCE_STATE {
 };
 
 
-const QString webUrl = QString("http://linux.linuxidc.com/");
-//const QString webUrl = QString("http://www.tieto.com/");
 const QString webUrl_user = QString("www.linuxidc.com");
 const QString webUrl_password = QString("www.linuxidc.com");
 const QString txtSplitMark = QString("-----");
+
+class Constant{
+public:
+    static QString web_url;
+};
 
 #endif // CONSTANT_H
 
