@@ -20,6 +20,7 @@ public slots:
 
 private:
     void parsingHrefElement(QXmlStreamReader& reader, QString baseUrlStr);
+    bool isHttpUrl(QString url);
 
 
     TreeManager* m_tm;

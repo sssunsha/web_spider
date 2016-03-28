@@ -87,12 +87,20 @@ void ParseManager::startStringParsing(QString str, QString baseUrl)
                 nameBeginPos = aStr.indexOf(nameBeginStr, 0, Qt::CaseInsensitive);
                 nameEndPos = aStr.indexOf(nameEndStr, nameBeginPos, Qt::CaseInsensitive);
 
-
+                QString selfUrl = aStr.mid(hrefBeingPos+6, hrefEndPos-hrefBeingPos-6);
                 QString linkStr;
-                QString url = webUrl;
-                url.remove(url.length()-1, 1);
-                linkStr.append(url);
-                linkStr.append(aStr.mid(hrefBeingPos+6, hrefEndPos-hrefBeingPos-6));
+                if(isHttpUrl(selfUrl))
+                {
+                    linkStr.append(selfUrl);
+                }
+                else
+                {
+                    QString url = webUrl;
+                    url.remove(url.length()-1, 1);
+                    linkStr.append(url);
+                    linkStr.append(selfUrl);
+
+                }
 //                qDebug() << linkStr;
                 QString nameStr = aStr.mid(nameBeginPos+1, nameEndPos-nameBeginPos-1);
 //                qDebug() << nameStr;
@@ -127,13 +135,20 @@ void ParseManager::parsingHrefElement(QXmlStreamReader &reader, QString baseUrlS
                 QString url = baseUrlStr;
                 url.remove(url.length()-1, 1);
                 linkStr.append(url);
-                linkStr.append(att.at(i).value());
+                QStringRef selfUrl = att.at(i).value();
+                linkStr.append(selfUrl);
 
 //                qDebug() <<"[parsingHrefElement] "<<  reader.readElementText() << " = " << linkStr;
                 this->m_tm->addTreeNode(baseUrlStr, reader.readElementText(), linkStr);
             }
         }
     }
+}
+
+// check is http url or not
+bool ParseManager::isHttpUrl(QString url)
+{
+    return url.contains("http");
 }
 
 
