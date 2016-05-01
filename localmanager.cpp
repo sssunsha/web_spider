@@ -2,9 +2,17 @@
 #include <QFile>
 #include <QDir>
 
+#ifdef Q_OS_WIN32
+const QString TXTLOCALFILE = "F:\\qt_workspace\\web_spider_tmp\\fetch_report.txt";
+const QString HTMLLOCALFILE = "F:\\qt_workspace\\web_spider_tmp\\index.html";
+const QString LOCALFOLDER = "F:\\qt_workspace\\web_spider_tmp";
+#else
 const QString TXTLOCALFILE = "/tmp/web_spider/fetch_report.txt";
 const QString HTMLLOCALFILE = "/tmp/web_spider/index.html";
 const QString LOCALFOLDER = "/tmp/web_spider/";
+#endif
+
+
 
 
 QString htmlHeardStr = QString("<html><head>"
